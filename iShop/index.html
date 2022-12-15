@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>iShop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap">
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="Table.js"></script>
+    <link rel="stylesheet" href="Table.css">
+    <script>
+      var shopNameStr = 'iShop';
+      var productsArr = [
+        {
+          code: 100,
+          name: 'Apple iPhone 14',
+          category: 'Смартфон',
+          photo: 'img/iPhone-14-Midnight.jpg',
+          description: 'полуночный, 6.1", 128 Гб',
+          inStock: 11,
+          price: 2414,
+        },
+        {
+          code: 101,
+          name: 'Apple iPhone 14 Pro',
+          category: 'Смартфон',
+          photo: 'img/iPhone-14_Pro-Space_Black.jpg',
+          description: 'космический чёрный, 6.1", 256 Гб',
+          inStock: 19,
+          price: 3895,
+        },
+        {
+          code: 102,
+          name: 'Apple iPhone 13 mini',
+          category: 'Смартфон',
+          photo: 'img/iPhone-13_mini-Green.jpg',
+          description: 'зелёный, 5.4", 128 Гб',
+          inStock: 10,
+          price: 2250,
+        },
+        {
+          code: 103,
+          name: 'Apple iPad 10-го поколения',
+          category: 'Планшет',
+          photo: 'img/iPad-10th_gen-Silver.jpg',
+          description: 'серебристый, 10.9", 64 Гб',
+          inStock: 12,
+          price: 1569,
+        },
+        {
+          code: 104,
+          name: 'Apple iPad 9-го поколения',
+          category: 'Планшет',
+          photo: 'img/iPad-9th_gen-Space_Gray.jpg',
+          description: 'серый космос, 10.2", 64 Гб',
+          inStock: 9,
+          price: 997.09,
+        },
+        {
+          code: 105,
+          name: 'Apple AirPods 2',
+          category: 'Наушники',
+          photo: 'img/AirPods-2nd_gen.jpg',
+          description: 'беспроводные наушники с микрофоном, вставные, время работы 5 ч, с кейсом 24 ч',
+          inStock: 21,
+          price: 357.32,
+        },
+        {
+          code: 106,
+          name: 'Apple AirPods Pro',
+          category: 'Наушники',
+          photo: 'img/AirPods_Pro.jpg',
+          description: 'беспроводные наушники с микрофоном, внутриканальные, время работы 5 ч, с кейсом 24 ч, активное шумоподавление',
+          inStock: 17,
+          price: 580,
+        },
+      ];
+      ReactDOM.render(
+        React.createElement(Table,{shopName:shopNameStr,products:productsArr}),
+        document.getElementById('container')
+      );
+    </script>
+  </body>
+</html>
