@@ -1,0 +1,22 @@
+.Filter {
+  margin: 3rem auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.67rem;
+}
+.Filter input[type="text"] {
+  margin-right: 0.67rem;
+}
+.Filter input[type="checkbox"] {
+  margin: 0 0.33rem 0 0;
+}
+.Filter ul {
+  margin: 0;
+  border: solid 1px gray;
+  border-radius: 3px;
+  height: 6.25rem;
+  overflow-y: scroll;
+  padding: 0.1rem 0.33rem;
+  list-style-type: none;
+}

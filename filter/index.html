@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Filter</title>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script src="Filter.js"></script>
+    <link href="Filter.css" rel="stylesheet">
+    <script>
+
+      let words = [
+        {code: 100, value: 'california'},
+        {code: 101, value: 'everything'},
+        {code: 102, value: 'aboveboard'},
+        {code: 103, value: 'washington'},
+        {code: 104, value: 'basketball'},
+        {code: 105, value: 'weathering'},
+        {code: 106, value: 'characters'},
+        {code: 107, value: 'literature'},
+        {code: 108, value: 'contraband'},
+        {code: 109, value: 'appreciate'},
+      ];
+
+      ReactDOM.render(
+        React.createElement(Filter, {listItems: words}),
+        document.getElementById('wrapper')
+      );
+
+    </script>
+  </body>
+</html>
