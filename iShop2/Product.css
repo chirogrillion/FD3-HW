@@ -3,6 +3,10 @@
   display: flex;
   align-items: center;
   font-family: inherit;
+  cursor: pointer;
+}
+.selected {
+  background-color: lavender;
 }
 .Product > * {
   height: 100px;

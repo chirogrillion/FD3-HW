@@ -18,7 +18,28 @@ let Shop = React.createClass({
   getInitialState: function() {
     return {
       products: this.props.products,
+      selectedProduct: null,
     };
+  },
+
+  productSelected: function(c) {
+    this.setState({selectedProduct: c});
+  },
+
+  deleteProduct: function(c) {
+
+    const newList = this.state.products.filter(function(v) {
+      if (v.code !== c) return true;
+      else return false;
+    });
+
+    if (this.state.selectedProduct === c) {
+      this.setState({products: newList, selectedProduct: null});
+    }
+    else {
+      this.setState({products: newList});
+    }
+
   },
 
   render: function() {
@@ -33,6 +54,9 @@ let Shop = React.createClass({
         description: v.description,
         inStock: v.inStock,
         price: v.price,
+        cbProductSelected: this.productSelected,
+        isSelected: this.state.selectedProduct === v.code,
+        cbDeleteProduct: this.deleteProduct,
       })
     );
 

@@ -10,23 +10,33 @@ let Product = React.createClass({
     description: React.PropTypes.string,
     inStock: React.PropTypes.number.isRequired,
     price: React.PropTypes.number.isRequired,
-  },
-
-  getInitialState: function() {
-    return {
-
-    };
+    cbProductSelected: React.PropTypes.func.isRequired,
+    isSelected: React.PropTypes.bool.isRequired,
+    cbDeleteProduct: React.PropTypes.func.isRequired,
   },
 
   formatPrice: function(num) {
     return new Intl.NumberFormat('ru-BY', {style: 'currency', currency: 'BYN'}).format(num);
   },
 
+  selectProduct: function(eo) {
+    if (eo.target.className !== 'Product-delete_button') {
+      this.props.cbProductSelected(this.props.code);
+    }
+  },
+
+  deleteProduct: function() {
+    const consentGiven = confirm(`Информация о товаре "${this.props.name}" будет удалена. Продолжить?`);
+    if (consentGiven) {
+      this.props.cbDeleteProduct(this.props.code);
+    }
+  },
+
   render: function() {
 
     const descr = this.props.description;
 
-    return React.DOM.article({className: 'Product', onClick: this.selectProduct},
+    return React.DOM.article({className: this.props.isSelected ? 'Product selected' : 'Product', onClick: this.selectProduct},
       React.DOM.img({src: this.props.photo}),
       React.DOM.div({className: 'Product-name'},
         React.DOM.h2(null, this.props.name),
@@ -37,7 +47,7 @@ let Product = React.createClass({
       React.DOM.p({className: 'Product-in_stock'},
         React.DOM.span(null, this.props.inStock),
       ),
-      React.DOM.button({onClick: this.deleteProduct}, 'Удалить'),
+      React.DOM.button({className: 'Product-delete_button', onClick: this.deleteProduct}, 'Удалить'),
     );
 
   },
