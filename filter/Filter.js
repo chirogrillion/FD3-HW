@@ -35,13 +35,13 @@ let Filter = React.createClass({
     const checkboxChecked = this.state.checkboxChecked;
     let listItemsArr = [...this.props.listItems];
 
-    listItemsArr = inputText
-      ? listItemsArr.filter(v => v.value.includes(inputText))
-      : listItemsArr;
+    if (inputText) {
+      listItemsArr = listItemsArr.filter(v => v.value.includes(inputText));
+    }
 
-    listItemsArr = checkboxChecked
-      ? listItemsArr.sort((a, b) => (a.value > b.value) ? 1 : -1)
-      : listItemsArr;
+    if (checkboxChecked) {
+      listItemsArr = listItemsArr.sort((a, b) => (a.value > b.value) ? 1 : -1);
+    }
 
     this.setState({listItems: listItemsArr});
 
