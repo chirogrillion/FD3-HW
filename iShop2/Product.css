@@ -1,0 +1,42 @@
+.Product {
+  width: 1200px;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+}
+.Product > * {
+  height: 100px;
+  box-sizing: border-box;
+  border-right: 1px solid rgb(235, 235, 235);
+  padding: 10px 20px;
+}
+.Product img {
+  display: block;
+  width: 101px;
+  padding: 0;
+}
+.Product-name,
+.Product-category,
+.Product-price,
+.Product-in_stock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.Product-name {
+  width: 599px;
+}
+.Product-category,
+.Product-price,
+.Product-in_stock {
+  margin: 0;
+  flex: 1 0 auto;
+}
+.Product-name h2,
+.Product-name p {
+  margin: 0;
+}
+.Product-in_stock span::after {
+  content: " шт. в наличии";
+}
