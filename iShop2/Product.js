@@ -36,7 +36,14 @@ let Product = React.createClass({
 
     const descr = this.props.description;
 
-    return React.DOM.article({className: this.props.isSelected ? 'Product selected' : 'Product', onClick: this.selectProduct},
+    return React.DOM.article(
+      {
+        className: this.props.isSelected
+          ? 'Product selected'
+          : 'Product',
+        title: 'Нажмите, чтобы выделить; нажмите ещё раз, чтобы снять выделение',
+        onClick: this.selectProduct,
+      },
       React.DOM.img({src: this.props.photo}),
       React.DOM.div({className: 'Product-name'},
         React.DOM.h2(null, this.props.name),
@@ -47,7 +54,11 @@ let Product = React.createClass({
       React.DOM.p({className: 'Product-in_stock'},
         React.DOM.span(null, this.props.inStock),
       ),
-      React.DOM.button({className: 'Product-delete_button', onClick: this.deleteProduct}, 'Удалить'),
+      React.DOM.button({
+        className: 'Product-delete_button',
+        title: 'Удалить товар',
+        onClick: this.deleteProduct,
+      }, 'Удалить'),
     );
 
   },

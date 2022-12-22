@@ -23,7 +23,12 @@ let Shop = React.createClass({
   },
 
   productSelected: function(c) {
-    this.setState({selectedProduct: c});
+    if (this.state.selectedProduct === c) {
+      this.setState({selectedProduct: null});
+    }
+    else {
+      this.setState({selectedProduct: c});
+    }
   },
 
   deleteProduct: function(c) {
