@@ -19,13 +19,12 @@ let Product = React.createClass({
     return new Intl.NumberFormat('ru-BY', {style: 'currency', currency: 'BYN'}).format(num);
   },
 
-  selectProduct: function(eo) {
-    if (eo.target.className !== 'Product-delete_button') {
-      this.props.cbProductSelected(this.props.code);
-    }
+  selectProduct: function() {
+    this.props.cbProductSelected(this.props.code);
   },
 
-  deleteProduct: function() {
+  deleteProduct: function(eo) {
+    eo.stopPropagation();
     const consentGiven = confirm(`Информация о товаре "${this.props.name}" будет удалена. Продолжить?`);
     if (consentGiven) {
       this.props.cbDeleteProduct(this.props.code);
