@@ -11,7 +11,7 @@ class BR2JSX extends React.Component {
 
   render() {
 
-    let lines = this.props.text.split(/<br ?\/?>/);
+    let lines = this.props.text.split(/<br *\/?>/);
     let layout = lines.map((v, i) => [v,
       (i === lines.length - 1) ? null : <br key={i}/>
     ]);
