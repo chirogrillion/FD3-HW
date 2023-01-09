@@ -13,7 +13,7 @@ class Shop extends React.Component {
       code: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
-      photo: PropTypes.string.isRequired,
+      tn: PropTypes.string.isRequired,
       description: PropTypes.string,
       inStock: PropTypes.number.isRequired,
       price: PropTypes.number.isRequired,
@@ -58,7 +58,7 @@ class Shop extends React.Component {
         code={v.code}
         name={v.name}
         category={v.category}
-        photo={v.photo}
+        tn={v.tn}
         description={v.description}
         inStock={v.inStock}
         price={v.price}
@@ -70,8 +70,22 @@ class Shop extends React.Component {
 
     return (
       <section className="Shop">
-        <h1>{this.props.shopName}</h1>
-        <div>{productsCode}</div>
+        <header>
+          <h1>{this.props.shopName}</h1>
+          <button>Добавить товар</button>
+        </header>
+        <main><table>
+          <thead><tr>
+            <th>Фото</th>
+            <th>Название, описание</th>
+            <th>Категория</th>
+            <th>Цена</th>
+            <th>В&nbsp;наличии</th>
+          </tr></thead>
+          <tbody>
+            {productsCode}
+          </tbody>
+        </table></main>
       </section>
     );
 

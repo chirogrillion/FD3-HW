@@ -1,0 +1,58 @@
+html {
+  overflow-y: hidden;
+}
+body {
+  --clr-accent: indigo;
+  --clr-accent-50: rgba(76, 0, 130, 0.5);
+  --clr-accent-25: rgba(76, 0, 130, 0.25);
+  --clr-accent-15: rgba(76, 0, 130, 0.15);
+  --clr-destr: crimson;
+  --clr-destr-50: rgba(220, 20, 60, 0.5);
+  --clr-destr-25: rgba(220, 20, 60, 0.25);
+  --clr-destr-15: rgba(220, 20, 60, 0.15);
+  --clr-border: rgb(235, 235, 235);
+  --clr-active: lavender;
+  margin: 0;
+  height: 100vh;
+}
+#container {
+  margin: 0 auto;
+  max-width: 1360px;
+  height: 100%;
+  display: flex;
+}
+.selected {
+  background-color: var(--clr-active);
+}
+button {
+  border: solid 2px var(--clr-accent);
+  border-radius: 7px;
+  padding: 10px 15px;
+  font: bold 1rem 'Roboto Flex', sans-serif;
+  color: var(--clr-accent);
+  background-color: transparent;
+  cursor: pointer;
+  transition-duration: 100ms;
+}
+button:hover {
+  background-color: var(--clr-accent-15);
+  box-shadow: 0 4px 16px 0 var(--clr-accent-25);
+}
+button:active {
+  color: white;
+  background-color: var(--clr-accent);
+  box-shadow: 0 2px 8px 0 var(--clr-accent-50);
+}
+button.button-destr {
+  border-color: var(--clr-destr);
+  color: var(--clr-destr);
+}
+button.button-destr:hover {
+  background-color: var(--clr-destr-15);
+  box-shadow: 0 4px 16px 0 var(--clr-destr-25);
+}
+button.button-destr:active {
+  color: white;
+  background-color: var(--clr-destr);
+  box-shadow: 0 2px 8px 0 var(--clr-destr-50);
+}

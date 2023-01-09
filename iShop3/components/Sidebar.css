@@ -1,0 +1,25 @@
+.Sidebar {
+  flex: 0 0 30%;
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto Flex', sans-serif;
+  background-color: whitesmoke;
+}
+.Sidebar header {
+  flex: 0 0 40px;
+}
+.Sidebar header h1 {
+  text-align: center;
+  opacity: 50%;
+}
+.Sidebar main {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+.Sidebar footer {
+  flex: 0 0 40px;
+}

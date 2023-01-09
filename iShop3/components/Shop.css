@@ -1,13 +1,24 @@
 .Shop {
-  margin: 0 auto;
-  width: fit-content;
+  flex: 0 0 70%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   font-family: 'Roboto Flex', sans-serif;
 }
-.Shop > h1 {
-  text-align: center;
-  font-size: 3rem;
+.Shop header {
+  border-bottom: solid 1px var(--clr-border);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
-.Shop > h1::before {
+.Shop header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+.Shop header h1::before {
   display: inline-block;
   margin-right: 0.125em;
   width: 0.611em;
@@ -18,9 +29,19 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
-.Shop > div {
-  margin-bottom: 3rem;
-  width: fit-content;
-  border: 1px solid rgb(235, 235, 235);
-  border-top: none;
+.Shop main {
+  overflow-y: auto;
+}
+.Shop table,
+.Shop table th,
+.Shop table td {
+  border-bottom: solid 1px var(--clr-border);
+  border-collapse: collapse;
+}
+.Shop table th,
+.Shop table td {
+  padding: 15px 20px;
+}
+.Shop table th {
+  opacity: 50%;
 }

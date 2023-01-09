@@ -9,7 +9,7 @@ class Product extends React.Component {
     code: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
+    tn: PropTypes.string.isRequired,
     description: PropTypes.string,
     inStock: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
@@ -39,25 +39,26 @@ class Product extends React.Component {
     const descr = this.props.description;
 
     return (
-      <article
+      <tr
         className={this.props.isSelected ? 'Product selected' : 'Product'}
-        title="Нажмите, чтобы выделить; нажмите ещё раз, чтобы снять выделение"
         onClick={this.selectProduct}
       >
-        <img src={this.props.photo}/>
-        <div className="Product-name">
-          <h2>{this.props.name}</h2>
+        <td className="Product-tn"><img src={this.props.tn}/></td>
+        <td className="Product-name">
+          <h3>{this.props.name}</h3>
           {descr ? <p>{descr}</p> : null}
-        </div>
-        <p className="Product-category">{this.props.category}</p>
-        <p className="Product-price">{this.formatPrice(this.props.price)}</p>
-        <p className="Product-in_stock"><span>{this.props.inStock}</span></p>
-        <button
-          className="Product-delete_button"
-          title="Удалить товар"
-          onClick={this.deleteProduct}
-        >Удалить</button>
-      </article>
+        </td>
+        <td className="Product-category">{this.props.category}</td>
+        <td className="Product-price">{this.formatPrice(this.props.price)}</td>
+        <td className="Product-in_stock">{this.props.inStock}</td>
+        <td className="Product-controls">
+          <button>Редактировать</button>
+          <button
+            className="button-destr"
+            onClick={this.deleteProduct}
+          >Удалить</button>
+        </td>
+      </tr>
     );
 
   };
