@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DOM from 'react-dom-factories';
 
 import './Product.css';
 
@@ -39,29 +38,26 @@ class Product extends React.Component {
 
     const descr = this.props.description;
 
-    return DOM.article(
-      {
-        className: this.props.isSelected
-          ? 'Product selected'
-          : 'Product',
-        title: 'Нажмите, чтобы выделить; нажмите ещё раз, чтобы снять выделение',
-        onClick: this.selectProduct,
-      },
-      DOM.img({src: this.props.photo}),
-      DOM.div({className: 'Product-name'},
-        DOM.h2(null, this.props.name),
-        descr ? DOM.p(null, descr) : null,
-      ),
-      DOM.p({className: 'Product-category'}, this.props.category),
-      DOM.p({className: 'Product-price'}, this.formatPrice(this.props.price)),
-      DOM.p({className: 'Product-in_stock'},
-        DOM.span(null, this.props.inStock),
-      ),
-      DOM.button({
-        className: 'Product-delete_button',
-        title: 'Удалить товар',
-        onClick: this.deleteProduct,
-      }, 'Удалить'),
+    return (
+      <article
+        className={this.props.isSelected ? 'Product selected' : 'Product'}
+        title="Нажмите, чтобы выделить; нажмите ещё раз, чтобы снять выделение"
+        onClick={this.selectProduct}
+      >
+        <img src={this.props.photo}/>
+        <div className="Product-name">
+          <h2>{this.props.name}</h2>
+          {descr ? <p>{descr}</p> : null}
+        </div>
+        <p className="Product-category">{this.props.category}</p>
+        <p className="Product-price">{this.formatPrice(this.props.price)}</p>
+        <p className="Product-in_stock"><span>{this.props.inStock}</span></p>
+        <button
+          className="Product-delete_button"
+          title="Удалить товар"
+          onClick={this.deleteProduct}
+        >Удалить</button>
+      </article>
     );
 
   };
