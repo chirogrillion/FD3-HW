@@ -56,3 +56,7 @@ button.button-destr:active {
   background-color: var(--clr-destr);
   box-shadow: 0 2px 8px 0 var(--clr-destr-50);
 }
+button.button-disabled {
+  pointer-events: none;
+  opacity: 30%;
+}

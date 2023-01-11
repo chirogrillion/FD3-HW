@@ -1,7 +1,6 @@
 .Shop {
   flex: 0 0 70%;
   height: 100%;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   font-family: 'Roboto Flex', sans-serif;
@@ -43,5 +42,21 @@
   padding: 15px 20px;
 }
 .Shop table th {
+  opacity: 50%;
+}
+aside {
+  z-index: 1;
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.15);
+  flex: 0 0 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Roboto Flex', sans-serif;
+  background-color: whitesmoke;
+}
+aside > p {
+  margin: 20px;
+  text-align: center;
   opacity: 50%;
 }

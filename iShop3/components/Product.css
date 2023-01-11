@@ -1,22 +1,23 @@
 .Product {
   position: relative;
 }
-.Product-tn {
+.Product-photo {
   padding: 0 !important;
 }
-.Product-tn img {
+.Product-photo img {
   display: block;
   width: 80px;
 }
-.Product-name h3,
+.Product-name h1,
 .Product-name p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
-.Product-name h3 {
+.Product-name h1 {
   margin: 0 0 5px;
+  font-size: 1.25rem;
 }
 .Product-name p {
   margin: 0;
@@ -28,7 +29,7 @@
   text-align: center;
 }
 .Product-in_stock::after {
-  content: " шт.";
+  content: "\00a0шт.";
 }
 .Product-controls {
   opacity: 0;

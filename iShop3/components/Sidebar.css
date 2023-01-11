@@ -1,25 +1,56 @@
 .Sidebar {
-  flex: 0 0 30%;
+  width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
-  z-index: 1;
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto Flex', sans-serif;
-  background-color: whitesmoke;
+}
+.Sidebar header,
+.Sidebar main,
+.Sidebar footer {
+  padding: 30px;
+}
+.Sidebar header,
+.Sidebar footer {
+  background-color: var(--clr-border);
 }
 .Sidebar header {
-  flex: 0 0 40px;
-}
-.Sidebar header h1 {
-  text-align: center;
-  opacity: 50%;
+  flex: 0 0 auto;
 }
 .Sidebar main {
   flex: 1 1 auto;
   overflow-y: auto;
 }
 .Sidebar footer {
-  flex: 0 0 40px;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.Sidebar header h1 {
+  margin: 0;
+  text-align: center;
+}
+.Sidebar main img {
+  display: block;
+  width: 100%;
+}
+.Sidebar main p.prod-in_stock::after {
+  content: "\00a0шт. в наличии";
+}
+
+.Sidebar main label {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Sidebar main label > div > input {
+  display: inline-block;
+  width: 40%;
+  box-sizing: border-box;
+}
+.Sidebar main label p.warning {
+  margin: 0;
+  color: var(--clr-destr);
 }
