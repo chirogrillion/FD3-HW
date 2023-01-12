@@ -28,7 +28,13 @@ class Sidebar extends React.Component {
     prodDescr: this.props.prodDescr,
     prodInStock: this.props.prodInStock,
     prodPrice: this.props.prodPrice,
-    isSavingAllowed: true,
+    alerts: {
+      prodName: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+      prodCtgr: this.props.mode === 'add' ? 'Выберите значение из\xa0списка.' : null,
+      prodImgURL: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+      prodInStock: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+      prodPrice: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+    },
   };
 
   componentDidUpdate(oldProps) {
@@ -40,6 +46,13 @@ class Sidebar extends React.Component {
         prodDescr: this.props.prodDescr,
         prodInStock: this.props.prodInStock,
         prodPrice: this.props.prodPrice,
+        alerts: {
+          prodName: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+          prodCtgr: this.props.mode === 'add' ? 'Выберите значение из\xa0списка.' : null,
+          prodImgURL: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+          prodInStock: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+          prodPrice: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+        },
       });
     }
   };
@@ -70,24 +83,58 @@ class Sidebar extends React.Component {
     const fieldName = eo.target.name;
     const fieldValue = eo.target.value;
 
-    if (fieldName === 'prod-name') {
-      this.setState({prodName: fieldValue});
+    let newAlerts = Object.assign({}, this.state.alerts);
+
+    switch (fieldName) {
+      case 'prodName':
+        if (fieldValue.length < 1) {
+          newAlerts.prodName = 'Заполните это поле.';
+        }
+        else {
+          newAlerts.prodName = null;
+        }
+        break;
+      case 'prodCtgr':
+        if (fieldValue === '0') {
+          newAlerts.prodCtgr = 'Выберите значение из\xa0списка.';
+        }
+        else {
+          newAlerts.prodCtgr = null;
+        }
+        break;
+      case 'prodImgURL':
+        if (fieldValue.length < 1) {
+          newAlerts.prodImgURL = 'Заполните это поле.';
+        }
+        else if (!/^https?:\/\/[^"']*\.(jpg|jpeg|png|gif|webp)$/.test(fieldValue)) {
+          newAlerts.prodImgURL = 'Ссылка указана неверно либо изображения такого формата не\xa0поддерживаются.';
+        }
+        else {
+          newAlerts.prodImgURL = null;
+        }
+        break;
+      case 'prodInStock':
+        if (!/^\d+$/.test(fieldValue)) {
+          newAlerts.prodInStock = 'Укажите неотрицательное целое число.';
+        }
+        else {
+          newAlerts.prodInStock = null;
+        }
+        break;
+      case 'prodPrice':
+        if (!/^\d+(\.\d{1,2})?$/.test(fieldValue)) {
+          newAlerts.prodPrice = 'Укажите положительное число с\xa0не\xa0более чем\xa02 знаками после запятой.';
+        }
+        else {
+          newAlerts.prodPrice = null;
+        }
+        break;
     }
-    else if (fieldName === 'prod-ctgr') {
-      this.setState({prodCtgr: fieldValue});
-    }
-    else if (fieldName === 'prod-img_url') {
-      this.setState({prodImgURL: fieldValue});
-    }
-    else if (fieldName === 'prod-descr') {
-      this.setState({prodDescr: fieldValue});
-    }
-    else if (fieldName === 'prod-in_stock') {
-      this.setState({prodInStock: fieldValue});
-    }
-    else if (fieldName === 'prod-price') {
-      this.setState({prodPrice: fieldValue});
-    }
+
+    this.setState({
+      [fieldName]: fieldValue,
+      alerts: newAlerts,
+    });
 
   };
 
@@ -98,6 +145,17 @@ class Sidebar extends React.Component {
     else {
       this.props.cbDiscardChanges(this.props.prodCode);
     }
+  };
+
+  getPermissionToSave = () => {
+    let isSavingAllowed = true;
+    for ( let field in this.state.alerts) {
+      if (this.state.alerts[field]) {
+        isSavingAllowed = false;
+        break;
+      }
+    }
+    return isSavingAllowed;
   };
 
   saveChanges = () => {
@@ -128,9 +186,9 @@ class Sidebar extends React.Component {
             <img src={this.props.prodImgURL}/>
             <h3>{this.formatCategory(this.props.prodCtgr)}</h3>
             <h2>{this.props.prodName}</h2>
-            <p className="prod-descr">{this.props.prodDescr}</p>
-            <p className="prod-in_stock">{this.props.prodInStock}</p>
-            <p className="prod-price">{this.formatPrice(this.props.prodPrice)}</p>
+            <p className="prodDescr">{this.props.prodDescr}</p>
+            <p className="prodPrice">{this.formatPrice(this.props.prodPrice)}</p>
+            <p className="prodInStock">{this.props.prodInStock}</p>
           </main>
         </React.Fragment>
       );
@@ -146,71 +204,96 @@ class Sidebar extends React.Component {
             <label>
               <span>Название:</span>
               <input
-                name="prod-name"
+                name="prodName"
                 type="text"
                 value={this.state.prodName}
                 onChange={this.userEdits}
+                className={this.state.alerts.prodName ? 'field-invalid' : null}
               />
-              <p className="warning"></p>
+              {
+                this.state.alerts.prodName
+                  ? <p className="alert">{this.state.alerts.prodName}</p>
+                  : null
+              }
             </label>
             <label>
               <span>Категория:</span>
               <select
-                name="prod-ctgr"
+                name="prodCtgr"
                 value={this.state.prodCtgr}
                 onChange={this.userEdits}
+                className={this.state.alerts.prodCtgr ? 'field-invalid' : null}
               >
                 {categories.map((v, i) => <option key={i} value={i}>{v}</option>)}
               </select>
-              <p className="warning"></p>
+              {
+                this.state.alerts.prodCtgr
+                  ? <p className="alert">{this.state.alerts.prodCtgr}</p>
+                  : null
+              }
             </label>
             <label>
               <span>Ссылка на фото:</span>
               <input
-                name="prod-img_url"
+                name="prodImgURL"
                 type="text"
                 value={this.state.prodImgURL}
                 onChange={this.userEdits}
+                className={this.state.alerts.prodImgURL ? 'field-invalid' : null}
               />
-              <p className="warning"></p>
+              {
+                this.state.alerts.prodImgURL
+                  ? <p className="alert">{this.state.alerts.prodImgURL}</p>
+                  : null
+              }
             </label>
             <label>
               <span>Описание:</span>
               <textarea
-                name="prod-descr"
+                name="prodDescr"
                 value={this.state.prodDescr}
                 onChange={this.userEdits}
               ></textarea>
             </label>
             <label>
-              <span>В наличии:</span>
-              <div>
-                <input
-                  name="prod-in_stock"
-                  type="number"
-                  min={0}
-                  step={1}
-                  value={this.state.prodInStock}
-                  onChange={this.userEdits}
-                />
-                <span>&nbsp;шт.</span>
-              </div>
-              <p className="warning"></p>
-            </label>
-            <label>
               <span>Цена:</span>
               <div>
                 <input
-                  name="prod-price"
+                  name="prodPrice"
                   type="number"
                   min={0.01}
                   step={0.01}
-                  value={this.state.prodPrice}
+                  value={this.state.prodPrice === 0 ? '' : this.state.prodPrice}
                   onChange={this.userEdits}
+                  className={this.state.alerts.prodPrice ? 'field-invalid' : null}
                 />
                 <span>&nbsp;Br</span>
               </div>
-              <p className="warning"></p>
+              {
+                this.state.alerts.prodPrice
+                  ? <p className="alert">{this.state.alerts.prodPrice}</p>
+                  : null
+              }
+            </label>
+            <label>
+              <span>В наличии:</span>
+              <div>
+                <input
+                  name="prodInStock"
+                  type="number"
+                  min={0}
+                  step={1}
+                  value={this.state.prodInStock === -1 ? '' : this.state.prodInStock}
+                  onChange={this.userEdits}
+                  className={this.state.alerts.prodInStock ? 'field-invalid' : null}
+                />
+                <span>&nbsp;шт.</span>
+              </div>
+              {
+                this.state.alerts.prodInStock
+                  ? <p className="alert">{this.state.alerts.prodInStock}</p>
+                  : null
+              }
             </label>
           </main>
           <footer>
@@ -218,7 +301,7 @@ class Sidebar extends React.Component {
               onClick={this.discardChanges}
             >Отменить</button>
             <button
-              className={this.state.isSavingAllowed ? null : 'button-disabled'}
+              className={this.getPermissionToSave() ? null : 'button-disabled'}
               onClick={this.saveChanges}
             >Сохранить</button>
           </footer>

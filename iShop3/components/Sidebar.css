@@ -34,23 +34,29 @@
   display: block;
   width: 100%;
 }
-.Sidebar main p.prod-in_stock::after {
+.Sidebar main p.prodInStock::after {
   content: "\00a0шт. в наличии";
 }
 
 .Sidebar main label {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.Sidebar main label:last-child {
+  margin-bottom: 0;
 }
 .Sidebar main label > div > input {
   display: inline-block;
   width: 40%;
   box-sizing: border-box;
 }
-.Sidebar main label p.warning {
+.Sidebar main label p.alert {
   margin: 0;
   color: var(--clr-destr);
+}
+.field-invalid {
+  border-color: var(--clr-destr);
 }

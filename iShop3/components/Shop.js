@@ -63,7 +63,9 @@ class Shop extends React.Component {
   };
 
   disableButtons = () => {
-    this.setState({buttonsDisabled: true});
+    if (!this.state.buttonsDisabled) {
+      this.setState({buttonsDisabled: true});
+    }
   };
 
   discardChanges = (c) => {
@@ -93,8 +95,6 @@ class Shop extends React.Component {
     else {
       newList.push(p);
     }
-    console.log(oldList);
-    console.log(newList);
     this.setState({
       products: newList,
       selectedProduct: p.code,
