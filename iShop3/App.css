@@ -11,6 +11,7 @@ body {
   --clr-destr-25: rgba(220, 20, 60, 0.25);
   --clr-destr-15: rgba(220, 20, 60, 0.15);
   --clr-border: rgb(235, 235, 235);
+  --clr-border-field: rgb(175, 175, 175);
   --clr-active: lavender;
   margin: 0;
   height: 100vh;
@@ -23,6 +24,22 @@ body {
 }
 .selected {
   background-color: var(--clr-active);
+}
+input,
+select,
+textarea {
+  box-sizing: border-box;
+  border: solid 2px var(--clr-border-field);
+  border-radius: 7px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+select {
+  padding: 9px !important;
+}
+.field-invalid {
+  border-color: var(--clr-destr);
 }
 button {
   border: solid 2px var(--clr-accent);

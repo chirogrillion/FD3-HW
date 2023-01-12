@@ -29,15 +29,40 @@
 .Sidebar header h1 {
   margin: 0;
   text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  opacity: 65%;
 }
 .Sidebar main img {
   display: block;
+  margin-bottom: 30px;
+  border-radius: 12px;
   width: 100%;
+}
+.Sidebar main h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  opacity: 65%;
+}
+.Sidebar main h2 {
+  margin: 0 0 20px;
+}
+.Sidebar main p.prodDescr {
+  margin: 0 0 20px;
+}
+.Sidebar main p.prodPrice {
+  margin: 0 0 20px;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.Sidebar main p.prodInStock {
+  margin: 0;
+  font-weight: 600;
+  color: var(--clr-accent);
 }
 .Sidebar main p.prodInStock::after {
   content: "\00a0шт. в наличии";
 }
-
 .Sidebar main label {
   margin-bottom: 30px;
   width: 100%;
@@ -48,15 +73,21 @@
 .Sidebar main label:last-child {
   margin-bottom: 0;
 }
+.Sidebar main label > span {
+  font-weight: bold;
+  opacity: 50%;
+}
+.Sidebar main label textarea {
+  height: 100px;
+  resize: none;
+}
 .Sidebar main label > div > input {
   display: inline-block;
+  margin-right: 10px;
   width: 40%;
-  box-sizing: border-box;
 }
 .Sidebar main label p.alert {
   margin: 0;
+  font-weight: 600;
   color: var(--clr-destr);
-}
-.field-invalid {
-  border-color: var(--clr-destr);
 }

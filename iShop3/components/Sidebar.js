@@ -60,9 +60,9 @@ class Sidebar extends React.Component {
   getTitle = () => {
     switch (this.props.mode) {
       case 'view':
-        return 'Просмотр информации о\xa0товаре';
+        return 'Просмотр товара';
       case 'edit':
-        return 'Редактирование информации о\xa0товаре';
+        return 'Редактирование товара';
       case 'add':
         return 'Создание нового товара';
     }
@@ -202,7 +202,7 @@ class Sidebar extends React.Component {
           </header>
           <main>
             <label>
-              <span>Название:</span>
+              <span>Название</span>
               <input
                 name="prodName"
                 type="text"
@@ -217,7 +217,7 @@ class Sidebar extends React.Component {
               }
             </label>
             <label>
-              <span>Категория:</span>
+              <span>Категория</span>
               <select
                 name="prodCtgr"
                 value={this.state.prodCtgr}
@@ -233,7 +233,7 @@ class Sidebar extends React.Component {
               }
             </label>
             <label>
-              <span>Ссылка на фото:</span>
+              <span>Ссылка на фото</span>
               <input
                 name="prodImgURL"
                 type="text"
@@ -248,7 +248,7 @@ class Sidebar extends React.Component {
               }
             </label>
             <label>
-              <span>Описание:</span>
+              <span>Описание</span>
               <textarea
                 name="prodDescr"
                 value={this.state.prodDescr}
@@ -256,7 +256,7 @@ class Sidebar extends React.Component {
               ></textarea>
             </label>
             <label>
-              <span>Цена:</span>
+              <span>Цена</span>
               <div>
                 <input
                   name="prodPrice"
@@ -267,7 +267,7 @@ class Sidebar extends React.Component {
                   onChange={this.userEdits}
                   className={this.state.alerts.prodPrice ? 'field-invalid' : null}
                 />
-                <span>&nbsp;Br</span>
+                <span>Br</span>
               </div>
               {
                 this.state.alerts.prodPrice
@@ -276,7 +276,7 @@ class Sidebar extends React.Component {
               }
             </label>
             <label>
-              <span>В наличии:</span>
+              <span>В наличии</span>
               <div>
                 <input
                   name="prodInStock"
@@ -287,7 +287,7 @@ class Sidebar extends React.Component {
                   onChange={this.userEdits}
                   className={this.state.alerts.prodInStock ? 'field-invalid' : null}
                 />
-                <span>&nbsp;шт.</span>
+                <span>шт.</span>
               </div>
               {
                 this.state.alerts.prodInStock
