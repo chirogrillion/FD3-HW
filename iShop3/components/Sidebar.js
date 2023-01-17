@@ -21,6 +21,14 @@ class Sidebar extends React.Component {
     cbSaveChanges: PropTypes.func.isRequired,
   };
 
+  defineAlerts = () => ({
+    prodName: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+    prodCtgr: this.props.mode === 'add' ? 'Выберите значение из\xa0списка.' : null,
+    prodImgURL: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+    prodInStock: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+    prodPrice: this.props.mode === 'add' ? 'Заполните это поле.' : null,
+  });
+
   state = {
     prodName: this.props.prodName,
     prodCtgr: this.props.prodCtgr,
@@ -28,13 +36,7 @@ class Sidebar extends React.Component {
     prodDescr: this.props.prodDescr,
     prodInStock: this.props.prodInStock,
     prodPrice: this.props.prodPrice,
-    alerts: {
-      prodName: this.props.mode === 'add' ? 'Заполните это поле.' : null,
-      prodCtgr: this.props.mode === 'add' ? 'Выберите значение из\xa0списка.' : null,
-      prodImgURL: this.props.mode === 'add' ? 'Заполните это поле.' : null,
-      prodInStock: this.props.mode === 'add' ? 'Заполните это поле.' : null,
-      prodPrice: this.props.mode === 'add' ? 'Заполните это поле.' : null,
-    },
+    alerts: this.defineAlerts(),
   };
 
   componentDidUpdate(oldProps) {
@@ -46,13 +48,7 @@ class Sidebar extends React.Component {
         prodDescr: this.props.prodDescr,
         prodInStock: this.props.prodInStock,
         prodPrice: this.props.prodPrice,
-        alerts: {
-          prodName: this.props.mode === 'add' ? 'Заполните это поле.' : null,
-          prodCtgr: this.props.mode === 'add' ? 'Выберите значение из\xa0списка.' : null,
-          prodImgURL: this.props.mode === 'add' ? 'Заполните это поле.' : null,
-          prodInStock: this.props.mode === 'add' ? 'Заполните это поле.' : null,
-          prodPrice: this.props.mode === 'add' ? 'Заполните это поле.' : null,
-        },
+        alerts: this.defineAlerts(),
       });
     }
   };
