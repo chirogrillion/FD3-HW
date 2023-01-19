@@ -1,0 +1,24 @@
+.withTooltip {
+  position: relative;
+}
+.withTooltip > article {
+  position: absolute;
+  top: 80%;
+  left: 60%;
+  box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.5);
+  border: solid 1px gray;
+  padding: 11px;
+  font-family: sans-serif;
+  font-size: 0.75rem;
+  background-color: floralwhite;
+}
+.withTooltip > article * {
+  margin: 0 0 7px;
+}
+.withTooltip > article :last-child {
+  margin-bottom: 0;
+}
+.withTooltip > article img {
+  display: block;
+  width: 200px;
+}
