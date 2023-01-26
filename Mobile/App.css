@@ -1,0 +1,13 @@
+html {
+  overflow-y: hidden;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: sans-serif;
+}
+#wrapper {
+  margin: 0 auto;
+  max-width: 1300px;
+  height: 100%;
+}

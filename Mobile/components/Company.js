@@ -38,7 +38,7 @@ class Company extends React.PureComponent {
   };
 
   switchTab = (eo) => {
-    this.setState({activeTab: eo.target.value});
+    this.setState({activeTab: eo.target.value, newClientBeingAdded: null});
   };
 
   changeClientMode = (c) => {
@@ -141,6 +141,12 @@ class Company extends React.PureComponent {
           >Добавить клиента</button>
         </header>
         <main><table>
+          <colgroup className="columns-fill">
+            <col/><col/><col/>
+          </colgroup>
+          <colgroup className="columns-fit">
+            <col/><col/><col/>
+          </colgroup>
           <thead><tr>
             <th>Фамилия</th>
             <th>Имя</th>

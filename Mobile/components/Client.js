@@ -72,11 +72,11 @@ class Client extends React.PureComponent {
       case 'view':
         return (
           <tr className={this.props.content.balance > 0 ? 'Client Client-active' : 'Client Client-blocked'}>
-            <td>{this.props.content.lastName}</td>
-            <td>{this.props.content.firstName}</td>
-            <td>{this.props.content.patronym}</td>
-            <td>{this.props.content.balance}</td>
-            <td>{this.props.content.balance > 0 ? 'Активен' : 'Заблокирован'}</td>
+            <td className="Client-last_name">{this.props.content.lastName}</td>
+            <td className="Client-first_name">{this.props.content.firstName}</td>
+            <td className="Client-patronym">{this.props.content.patronym}</td>
+            <td className="Client-balance">{this.props.content.balance}</td>
+            <td className="Client-status">{this.props.content.balance > 0 ? 'Активен' : 'Заблокирован'}</td>
             <td className="Client-controls">
               <button
                 onClick={this.editClientInfo}
