@@ -24,7 +24,7 @@ class Client extends React.PureComponent {
   balanceRef = React.createRef();
 
   editClientInfo = () => {
-    myEvents.emit('clientModeChanged', this.props.content.code);
+    myEvents.emit('clientModeChangeRequested', this.props.content.code);
   };
 
   saveChanges = () => {
@@ -51,13 +51,13 @@ class Client extends React.PureComponent {
         patronym: newPatronym,
         balance: newBalance,
       };
-      myEvents.emit('clientInfoChanged', newInfo);
+      myEvents.emit('clientInfoUpdateRequested', newInfo);
     }
 
   };
 
   discardChanges = () => {
-    myEvents.emit('clientModeChanged');
+    myEvents.emit('clientModeChangeRequested');
   };
 
   requestClientDeletion = () => {
@@ -67,7 +67,7 @@ class Client extends React.PureComponent {
     }
   };
 
-  getClientLayout = () => {
+  getLayout = () => {
     switch (this.props.mode) {
       case 'view':
         return (
@@ -138,9 +138,8 @@ class Client extends React.PureComponent {
   };
 
   render() {
-    console.log(`Рендеринг дочернего компонента № ${this.props.content.code}`);
-    console.log(this.props);
-    return this.getClientLayout();
+    console.log(`Рендеринг Client #${this.props.content.code}`);
+    return this.getLayout();
   };
 
 };

@@ -22,38 +22,80 @@ class Company extends React.PureComponent {
     clients: this.props.clients,
     activeTab: 'all',
     clientBeingEdited: null,
+    newClientBeingAdded: null,
   };
 
   componentDidMount = () => {
     myEvents.addListener('clientDeletionRequested', this.deleteClient);
-    myEvents.addListener('clientModeChanged', this.updateClientCard);
-    myEvents.addListener('clientInfoChanged', this.updateClientInfo);
+    myEvents.addListener('clientModeChangeRequested', this.changeClientMode);
+    myEvents.addListener('clientInfoUpdateRequested', this.updateClientInfo);
   };
 
   componentWillUnmount = () => {
     myEvents.removeListener('clientDeletionRequested', this.deleteClient);
-    myEvents.removeListener('clientModeChanged', this.updateClientCard);
-    myEvents.removeListener('clientInfoChanged', this.updateClientInfo);
+    myEvents.removeListener('clientModeChangeRequested', this.changeClientMode);
+    myEvents.removeListener('clientInfoUpdateRequested', this.updateClientInfo);
   };
 
   switchTab = (eo) => {
     this.setState({activeTab: eo.target.value});
   };
 
-  updateClientCard = (c) => {
-    if (this.state.clientBeingEdited === null) {
-      this.setState({clientBeingEdited: c});
+  changeClientMode = (c) => {
+    if (this.state.clientBeingEdited === c) {
+      this.setState({clientBeingEdited: null});
+    }
+    else if (this.state.newClientBeingAdded === c) {
+      this.setState({newClientBeingAdded: null});
     }
     else {
-      this.setState({clientBeingEdited: null});
+      this.setState({clientBeingEdited: c, newClientBeingAdded: null});
     }
   };
 
   updateClientInfo = (newInfo) => {
-    const newList = this.state.clients.map(oldInfo =>
-      oldInfo.code === newInfo.code ? newInfo : oldInfo
-    );
-    this.setState({clients: newList, clientBeingEdited: null});
+    const oldList = this.state.clients;
+    let newList;
+    if (this.state.clientBeingEdited) {
+      newList = oldList.map(oldInfo =>
+        oldInfo.code === newInfo.code ? newInfo : oldInfo
+      );
+    }
+    else if (this.state.newClientBeingAdded) {
+      newList = [...oldList, newInfo];
+    }
+    this.setState({clients: newList, clientBeingEdited: null, newClientBeingAdded: null});
+  };
+
+  getNewClientCode = () => {
+    const clientsList = this.state.clients;
+    const clientsNum = clientsList.length;
+    if (!clientsNum) {
+      return 100;
+    }
+    else {
+      return clientsList[clientsNum - 1].code + 1;
+    }
+  };
+
+  addClient = () => {
+    this.setState({clientBeingEdited: null, newClientBeingAdded: this.getNewClientCode()});
+  };
+
+  getNewClientLayout = () => {
+    const newClientCode = this.state.newClientBeingAdded;
+    const newClient = {
+      code: newClientCode,
+      lastName: '',
+      firstName: '',
+      patronym: '',
+      balance: 0,
+    };
+    return <Client
+      key={newClientCode}
+      mode="edit"
+      content={newClient}
+    />;
   };
 
   deleteClient = (c) => {
@@ -76,28 +118,27 @@ class Company extends React.PureComponent {
         break;
     }
 
-    clientsList = clientsList.map(v =>
+    return clientsList.map(v =>
       <Client
         key={v.code}
         mode={v.code === this.state.clientBeingEdited ? 'edit' : 'view'}
         content={v}
       />
     );
-    console.log('getClientsLayout:');
-    console.log(clientsList);
-    return clientsList;
 
   };
 
   render() {
 
-    console.log(`Рендеринг родительского компонента`);
+    console.log(`Рендеринг Company`);
 
     return (
       <section className="Company">
         <header>
           <h2>Клиенты</h2>
-          <button>Добавить клиента</button>
+          <button
+            onClick={this.addClient}
+          >Добавить клиента</button>
         </header>
         <main><table>
           <thead><tr>
@@ -110,6 +151,11 @@ class Company extends React.PureComponent {
           </tr></thead>
           <tbody>
             {this.getClientsLayout()}
+            {
+              this.state.newClientBeingAdded
+                ? this.getNewClientLayout()
+                : null
+            }
           </tbody>
         </table></main>
         <footer>
