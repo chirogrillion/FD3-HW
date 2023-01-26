@@ -32,7 +32,7 @@
   overflow: auto;
 }
 .Company table {
-  width: 100vw;
+  width: 100%;
   border-collapse: collapse;
 }
 .Company table .columns-fit {
