@@ -1,0 +1,11 @@
+.Controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.67rem;
+}
+.Controls input[type="text"] {
+  margin-right: 0.67rem;
+}
+.Controls input[type="checkbox"] {
+  margin: 0 0.33rem 0 0;
+}
